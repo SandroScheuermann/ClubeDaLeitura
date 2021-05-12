@@ -4,7 +4,7 @@ using System;
 
 namespace ClubeDaLeitura.Telas
 {
-    class TelaRevista : TelaBase, IEditavel
+    class TelaRevista : TelaBase
     {
         private Controlador controladorCaixa;
         public TelaRevista(Controlador controlador, Controlador controladorCaixa) : base(controlador) { this.controladorCaixa = controladorCaixa; }

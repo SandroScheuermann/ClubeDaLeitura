@@ -4,7 +4,7 @@ using System;
 
 namespace ClubeDaLeitura.Telas
 {
-    class TelaAmiguinho : TelaBase, IEditavel
+    class TelaAmiguinho : TelaBase 
     {
         public TelaAmiguinho(Controlador controlador) : base(controlador) { }       
         public override Registro InserirNovoRegistro()

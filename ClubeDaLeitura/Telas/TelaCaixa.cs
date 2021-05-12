@@ -4,7 +4,7 @@ using System;
 
 namespace ClubeDaLeitura.Telas
 {
-    class TelaCaixa : TelaBase, IEditavel
+    class TelaCaixa : TelaBase
     {
         public TelaCaixa(Controlador controlador) : base(controlador){}
         public override Registro InserirNovoRegistro()

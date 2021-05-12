@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ClubeDaLeitura.Controladores;
+using ClubeDaLeitura.Domínio;
+using System;
 
 namespace ClubeDaLeitura.Telas
 {
-    class TelaEmprestimo
+    class TelaEmprestimo : TelaBase
     {
+        public TelaEmprestimo(Controlador controlador) : base(controlador)
+        {
+        }
+        public override Registro InserirNovoRegistro()
+        {
+            
+            throw new NotImplementedException();
+        }
     }
 }
