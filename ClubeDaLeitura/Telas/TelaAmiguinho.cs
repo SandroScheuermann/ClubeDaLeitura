@@ -4,12 +4,18 @@ using System;
 
 namespace ClubeDaLeitura.Telas
 {
-    class TelaAmiguinho : TelaBase 
+    class TelaAmiguinho : TelaBase
     {
-        public TelaAmiguinho(Controlador controlador) : base(controlador) { }       
+        Controlador controladorAmiguinho;
+        public TelaAmiguinho(Controlador controladorAmiguinho) : base(controladorAmiguinho, "Cadastro de Amiguinhos\n")
+        {
+            this.controladorAmiguinho = controladorAmiguinho;
+        }
         public override Registro InserirNovoRegistro()
         {
             string nome = "", nomeResponsavel = "", telefone = "", localidade = "";
+
+            Console.Clear();
 
             while (true)
             {
@@ -17,7 +23,7 @@ namespace ClubeDaLeitura.Telas
                 nome = Console.ReadLine();
                 Console.Clear();
 
-                if (string.IsNullOrEmpty(nome)) break;
+                if (!string.IsNullOrEmpty(nome)) break;
 
                 Console.WriteLine("O nome do amiguinho é obrigatório!!!");
             }
@@ -28,7 +34,7 @@ namespace ClubeDaLeitura.Telas
                 nomeResponsavel = Console.ReadLine();
                 Console.Clear();
 
-                if (string.IsNullOrEmpty(nomeResponsavel)) break;
+                if (!string.IsNullOrEmpty(nomeResponsavel)) break;
 
                 Console.WriteLine("O nome do responsável é obrigatório!!!");
             }
@@ -39,7 +45,7 @@ namespace ClubeDaLeitura.Telas
                 telefone = Console.ReadLine();
                 Console.Clear();
 
-                if (string.IsNullOrEmpty(telefone)) break;
+                if (!string.IsNullOrEmpty(telefone)) break;
 
                 Console.WriteLine("O número do telefone obrigatório!!! ");
             }
@@ -50,7 +56,7 @@ namespace ClubeDaLeitura.Telas
                 localidade = Console.ReadLine();
                 Console.Clear();
 
-                if (string.IsNullOrEmpty(localidade)) break;
+                if (!string.IsNullOrEmpty(localidade)) break;
 
                 Console.WriteLine("A localidade do amiguinho é obrigatória!!!");
 

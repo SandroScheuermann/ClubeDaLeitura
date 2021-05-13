@@ -16,11 +16,9 @@ namespace ClubeDaLeitura.Domínio
             this.nomeResponsavel = nomeResponsavel;
             this.telefone = telefone;
             this.localidade = localidade;
-        }
-        public Amiguinho()
-        {
             id = GeradorId.GerarIdAmiguinho();
         }
+
         public Amiguinho(int idSelecionado)
         {
             id = idSelecionado;
@@ -45,7 +43,7 @@ namespace ClubeDaLeitura.Domínio
         }
         public override string ToString()
         {
-            return "ID : " + id + "\nNome : " + this.nome + "\nNome do responsável : " + this.nomeResponsavel + "\nTelefone : " + this.telefone + "\nLocalidade : " + this.localidade;
+            return "\nID : " + id + "\nNome : " + this.nome + "\nNome do responsável : " + this.nomeResponsavel + "\nTelefone : " + this.telefone + "\nLocalidade : " + this.localidade;
         }
     }
 }

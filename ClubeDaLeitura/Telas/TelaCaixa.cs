@@ -6,11 +6,12 @@ namespace ClubeDaLeitura.Telas
 {
     class TelaCaixa : TelaBase
     {
-        public TelaCaixa(Controlador controlador) : base(controlador){}
+        public TelaCaixa(Controlador controladorCaixa) : base(controladorCaixa, "Cadastro de Caixas\n") { }
         public override Registro InserirNovoRegistro()
         {
             string etiqueta = "", cor = "", nCaixa = "";
             int nCaixaInt = 0;
+            Console.Clear();
 
             while (true)
             {
@@ -18,7 +19,7 @@ namespace ClubeDaLeitura.Telas
                 cor = Console.ReadLine();
                 Console.Clear();
 
-                if (string.IsNullOrEmpty(cor))break;
+                if (!string.IsNullOrEmpty(cor)) break;
 
                 Console.WriteLine("A cor da caixa é obrigatória!!!");
             }
@@ -29,7 +30,7 @@ namespace ClubeDaLeitura.Telas
                 etiqueta = Console.ReadLine();
                 Console.Clear();
 
-                if (string.IsNullOrEmpty(etiqueta))break;
+                if (!string.IsNullOrEmpty(etiqueta)) break;
 
                 Console.WriteLine("A etiqueta da caixa é obrigatória!!!");
             }
@@ -40,13 +41,12 @@ namespace ClubeDaLeitura.Telas
                 nCaixa = Console.ReadLine();
                 Console.Clear();
 
-                if (int.TryParse(nCaixa, out nCaixaInt))break;
+                if (int.TryParse(nCaixa, out nCaixaInt)) break;
 
                 Console.WriteLine("O número da caixa é obrigatório!!! ");
             }
 
-            Caixa caixa = new Caixa(cor, etiqueta, nCaixaInt);
-            return caixa;
+            return new Caixa(cor, etiqueta, nCaixaInt);
         }
     }
 }

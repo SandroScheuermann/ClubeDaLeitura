@@ -1,39 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ClubeDaLeitura.Domínio;
 
 namespace ClubeDaLeitura.Controladores
 {
     class Controlador
     {
-        private object[] registros = new object[100];
-        public object[] Registros { get => SelecionarTodosRegistros(); }
-        public void Cadastrar(int id, object obj)
+        private Registro[] registros = new Registro[100];
+        public Registro[] Registros { get => SelecionarTodosRegistros(); }
+
+        public void Editar(int id, Registro registro)
         {
-            int posicao;
-
-            if (id == 0)
-            {
-                posicao = ObterPosicaoVaga();
-            }
-            else
-            {
-                posicao = ObterPosicaoOcupada(obj);
-            }
-
-            registros[posicao] = obj;
-
+            int posicao = ObterPosicaoOcupada(registro);
+            registros[posicao] = registro;
 
         }
-        public bool ExcluirRegistro(object obj)
+        public void Cadastrar(int id, Registro registro)
+        {
+            int posicao = ObterPosicaoVaga();          
+            registros[posicao] = registro;
+        }
+        public bool ExcluirRegistro(Registro registro)
         {
             bool conseguiuExcluir = false;
 
             for (int i = 0; i < registros.Length; i++)
             {
-                if (registros[i] != null && registros[i].Equals(obj))
+                if (registros[i] != null && registros[i].Equals(registro))
                 {
                     registros[i] = null;
                     conseguiuExcluir = true;
@@ -56,13 +48,13 @@ namespace ClubeDaLeitura.Controladores
             }
             return posicao;
         }
-        private int ObterPosicaoOcupada(object obj)
+        private int ObterPosicaoOcupada(Registro registro)
         {
             int posicao = 0;
 
             for (int i = 0; i < registros.Length; i++)
             {
-                if (registros[i] != null && registros[i].Equals(obj))
+                if (registros[i] != null && registros[i].Equals(registro))
                 {
                     posicao = i;
                     break;
@@ -84,13 +76,13 @@ namespace ClubeDaLeitura.Controladores
 
             return numeroRegistrosCadastrados;
         }
-        protected object[] SelecionarTodosRegistros()
+        private Registro[] SelecionarTodosRegistros()
         {
-            object[] registrosAux = new object[QtdRegistrosCadastrados()];
+            Registro[] registrosAux = new Registro[QtdRegistrosCadastrados()];
 
             int i = 0;
 
-            foreach (object r in registros)
+            foreach (Registro r in registros)
             {
                 if (r != null)
                     registrosAux[i++] = r;
@@ -98,21 +90,19 @@ namespace ClubeDaLeitura.Controladores
 
             return registrosAux;
         }
-        public object SelecionarRegistroPorId(object obj)
+        public Registro SelecionarRegistroPorId(int id)
         {
-            object registro = null;
+            Registro registro = null;
 
             for (int i = 0; i < registros.Length; i++)
             {
-                if (registros[i] != null && registros[i].Equals(obj))
+                if (registros[i] != null && registros[i].Id == id)
                 {
                     registro = registros[i];
-
                     break;
                 }
             }
             return registro;
         }
-
     }
 }

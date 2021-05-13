@@ -17,6 +17,7 @@ namespace ClubeDaLeitura.Domínio
             this.revista = revista;
             this.dataEmprestimo = dataEmprestimo;
             this.dataDevolucao = dataDevolucao;
+            id = GeradorId.GerarIdEmprestimo();
         }
         public override bool Validar()
         {
@@ -38,7 +39,7 @@ namespace ClubeDaLeitura.Domínio
         public override string ToString()
         {
             return "\nAmiguinho : " + this.amiguinho.Nome + "\nRevista : " + this.revista.TipoColecao +
-                "\nData de Empréstimo : " + dataEmprestimo + "\nData de devolução" + dataDevolucao;
+                "\nData de Empréstimo : " + dataEmprestimo + "\nData de devolução\n : " + dataDevolucao;
         }
     }
 }

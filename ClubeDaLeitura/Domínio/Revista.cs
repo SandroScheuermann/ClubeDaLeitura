@@ -17,9 +17,6 @@ namespace ClubeDaLeitura.Domínio
             this.nEdicao = nEdicao;
             this.anoRevista = anoRevista;
             this.caixa = caixa;
-        }
-        public Revista()
-        {
             id = GeradorId.GerarIdRevista();
         }
         public Revista(int idSelecionado)
@@ -47,7 +44,7 @@ namespace ClubeDaLeitura.Domínio
         public override string ToString()
         {
             return "\nID : "+ id +"\nTipo de coleção : " + this.tipoColecao + "\nNúmero de edição : " + this.nEdicao + "\nAno da revista : " +
-                this.anoRevista + "\nCaixa da revista : " + this.anoRevista;
+                this.anoRevista + "\nCaixa da revista\n : " + this.anoRevista;
         }
 
     }

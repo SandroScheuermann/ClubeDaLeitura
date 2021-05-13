@@ -15,9 +15,6 @@ namespace ClubeDaLeitura.Domínio
             this.cor = cor;
             this.etiqueta = etiqueta;
             this.numeroCaixa = numeroCaixa;
-        }
-        public Caixa()
-        {
             id = GeradorId.GerarIdCaixa();
         }
         public Caixa(int idSelecionado)
@@ -42,7 +39,7 @@ namespace ClubeDaLeitura.Domínio
         }
         public override string ToString()
         {
-            return "\nID : " + this.id + "\nCor : " + this.cor + "\nEtiqueta : " + this.etiqueta + "\nNumero da Caixa : " + this.NumeroCaixa;
+            return "\nID : " + this.id + "\nCor : " + this.cor + "\nEtiqueta : " + this.etiqueta + "\nNumero da Caixa\n : " + this.NumeroCaixa;
         }
 
     }

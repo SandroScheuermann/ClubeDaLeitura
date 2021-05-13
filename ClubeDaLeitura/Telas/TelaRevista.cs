@@ -7,12 +7,13 @@ namespace ClubeDaLeitura.Telas
     class TelaRevista : TelaBase
     {
         private Controlador controladorCaixa;
-        public TelaRevista(Controlador controlador, Controlador controladorCaixa) : base(controlador) { this.controladorCaixa = controladorCaixa; }
+        public TelaRevista(Controlador controladorRevista, Controlador controladorCaixa) : base(controladorRevista, "Cadastro de Revistas\n") { this.controladorCaixa = controladorCaixa; }
         public override Registro InserirNovoRegistro()
         {
             string tipoColecao = "", nEdicao = "", anoRevista = "", idCaixa = "";
             int nEdicaoInt = 0, anoRevistaInt = 0, idCaixaInt = 0;
             Caixa caixa;
+            Console.Clear();
 
             while (true)
             {
@@ -20,7 +21,7 @@ namespace ClubeDaLeitura.Telas
                 tipoColecao = Console.ReadLine();
                 Console.Clear();
 
-                if (string.IsNullOrEmpty(tipoColecao)) break;
+                if (!string.IsNullOrEmpty(tipoColecao)) break;
 
                 Console.WriteLine("O tipo de coleção é obrigatório!!!");
 
@@ -55,7 +56,7 @@ namespace ClubeDaLeitura.Telas
 
                 if (int.TryParse(idCaixa, out idCaixaInt))
                 {
-                    caixa = (Caixa)controladorCaixa.SelecionarRegistroPorId(idCaixa);
+                    caixa = (Caixa)controladorCaixa.SelecionarRegistroPorId(idCaixaInt);
                     break;
                 }
 
@@ -63,7 +64,6 @@ namespace ClubeDaLeitura.Telas
             }
 
             Revista revista = new Revista(tipoColecao, nEdicaoInt, anoRevistaInt, caixa);
-
             return revista;
         }
     }

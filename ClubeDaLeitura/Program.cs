@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ClubeDaLeitura.Telas;
 
 namespace ClubeDaLeitura
 {
@@ -10,9 +7,17 @@ namespace ClubeDaLeitura
     {
         static void Main(string[] args)
         {
+            TelaPrincipal telaPrincipal = new TelaPrincipal();
 
+            while (true)
+            {
+                TelaBase telaSelecionada = telaPrincipal.ObterTela();
 
+                if (telaSelecionada == null)
+                    break;
 
+                telaSelecionada.Menu();
+            }
         }
     }
 }
