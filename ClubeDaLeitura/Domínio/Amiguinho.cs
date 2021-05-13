@@ -9,7 +9,6 @@ namespace ClubeDaLeitura.Domínio
     class Amiguinho : Registro
     {
         string nome = "", nomeResponsavel = "", telefone = "", localidade = "";
-        bool pegouLivro = false;
         public Amiguinho(string nome, string nomeResponsavel, string telefone, string localidade)
         {
             this.nome = nome;

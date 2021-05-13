@@ -11,6 +11,7 @@ namespace ClubeDaLeitura.Domínio
         string tipoColecao = "";
         int nEdicao,anoRevista;
         Caixa caixa;
+        bool alugado = false;
         public Revista(string tipoColecao, int nEdicao, int anoRevista, Caixa caixa)
         {
             this.tipoColecao = tipoColecao;
@@ -24,6 +25,7 @@ namespace ClubeDaLeitura.Domínio
             id = idSelecionado;
         }
         public string TipoColecao { get => tipoColecao;}
+        public bool Alugado { get => alugado; set => alugado = value; }
         public override bool Validar()
         {
             bool valida = false;
@@ -44,7 +46,7 @@ namespace ClubeDaLeitura.Domínio
         public override string ToString()
         {
             return "\nID : "+ id +"\nTipo de coleção : " + this.tipoColecao + "\nNúmero de edição : " + this.nEdicao + "\nAno da revista : " +
-                this.anoRevista + "\nCaixa da revista\n : " + this.anoRevista;
+                this.anoRevista + "\nCaixa da revista : " + this.anoRevista;
         }
 
     }

@@ -15,7 +15,7 @@ namespace ClubeDaLeitura.Telas
             this.controlador = controlador;
             this.titulo = titulo;
         }
-        private string ObterOpcao()
+        protected virtual string ObterOpcao()
         {
             Console.WriteLine(titulo);
 
@@ -75,7 +75,7 @@ namespace ClubeDaLeitura.Telas
                 Console.WriteLine("Falha ao editar registro!!!");
             }
         }
-        protected bool VisualizarRegistros(Object[] array)
+        protected bool VisualizarRegistros(Registro[] array)
         {
             if (array.Length == 0)
             {
@@ -93,7 +93,7 @@ namespace ClubeDaLeitura.Telas
                 return true;
             }
         }
-        public void Menu()
+        public virtual void Menu()
         {
             switch (ObterOpcao())
             {

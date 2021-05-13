@@ -35,7 +35,7 @@ namespace ClubeDaLeitura.Telas
                 telaSelecionada = new TelaRevista(controladorRevista, controladorCaixa);
 
             else if (opcao == "4")
-                telaSelecionada = new TelaEmprestimo(controladorRevista, controladorCaixa, controladorRevista);
+                telaSelecionada = new TelaEmprestimo(controladorEmprestimo, controladorAmiguinho, controladorRevista);
 
             return telaSelecionada;
         }
