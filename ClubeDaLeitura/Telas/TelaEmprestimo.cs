@@ -22,57 +22,64 @@ namespace ClubeDaLeitura.Telas
             int idAmiguinhoInt, idRevistaInt;
             Console.Clear();
 
-            while (true)
+            if (controladorAmiguinho.Registros.Length == 0 || controladorRevista.Registros.Length == 0)
             {
-                Console.WriteLine("\nDigite o ID do amiguinho que quer fazer um empréstimo : ");
-                VisualizarRegistros(controladorAmiguinho.Registros);
-                idAmiguinho = Console.ReadLine();
                 Console.Clear();
-
-                if (int.TryParse(idAmiguinho, out idAmiguinhoInt))
-                {
-                    amiguinho = (Amiguinho)controladorAmiguinho.SelecionarRegistroPorId(idAmiguinhoInt);
-                    break;
-                }
-
-                Console.WriteLine("Digite um ID correto!!!");
+                Console.WriteLine("Não há AMIGUINHOS ou REVISTAS registradas!!!");
+                return null;
             }
-            while (true)
+            else
             {
-                Console.WriteLine("\nDigite o ID da revista que foi emprestada : ");
-                VisualizarRegistros(controladorRevista.Registros);
-                idRevista = Console.ReadLine();
-                Console.Clear();
-
-                if (int.TryParse(idRevista, out idRevistaInt))
+                while (true)
                 {
-                    revista = (Revista)controladorRevista.SelecionarRegistroPorId(idRevistaInt);
+                    Console.WriteLine("\nDigite o ID do amiguinho que quer fazer um empréstimo : ");
+                    VisualizarRegistros(controladorAmiguinho.Registros);
+                    idAmiguinho = Console.ReadLine();
+                    Console.Clear();
 
-                    if (revista.Alugado)
+                    if (int.TryParse(idAmiguinho, out idAmiguinhoInt))
                     {
-                        Console.WriteLine("Revista já alugada!!!");
-                        continue;
+                        amiguinho = (Amiguinho)controladorAmiguinho.SelecionarRegistroPorId(idAmiguinhoInt);
+                        break;
                     }
 
-                    revista.Alugado = true;
-                    break;
+                    Console.WriteLine("Digite um ID correto!!!");
                 }
+                while (true)
+                {
+                    Console.WriteLine("\nDigite o ID da revista que foi emprestada : ");
+                    VisualizarRegistros(controladorRevista.Registros);
+                    idRevista = Console.ReadLine();
+                    Console.Clear();
 
-                Console.WriteLine("Digite um ID correto!!!");
+                    if (int.TryParse(idRevista, out idRevistaInt))
+                    {
+                        revista = (Revista)controladorRevista.SelecionarRegistroPorId(idRevistaInt);
+
+                        if (revista.Alugado)
+                        {
+                            Console.WriteLine("Revista já alugada!!!");
+                            continue;
+                        }
+
+                        revista.Alugado = true;
+                        break;
+                    }
+
+                    Console.WriteLine("Digite um ID correto!!!");
+                }
+                while (true)
+                {
+                    Console.WriteLine("\nDigite a data de devolução : ");
+
+                    dataDevolucao = Console.ReadLine();
+
+                    if (DateTime.TryParse(dataDevolucao, out dataDevolucaoDate)) { break; }
+
+                    Console.WriteLine("Digite uma data correta!!!");
+                }
+                return new Emprestimo(amiguinho, revista, DateTime.Now, dataDevolucaoDate);
             }
-            while (true)
-            {
-                Console.WriteLine("\nDigite a data de devolução : ");
-
-                dataDevolucao = Console.ReadLine();
-
-                if (DateTime.TryParse(dataDevolucao, out dataDevolucaoDate)) { break; }
-
-                Console.WriteLine("Digite uma data correta!!!");
-            }
-
-            return new Emprestimo(amiguinho, revista, DateTime.Now, dataDevolucaoDate);
-
         }
         protected override string ObterOpcao()
         {

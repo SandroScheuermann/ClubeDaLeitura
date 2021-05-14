@@ -32,47 +32,67 @@ namespace ClubeDaLeitura.Telas
         }
         public void ExcluirRegistro()
         {
-            VisualizarRegistros(controlador.Registros);
 
-            Console.WriteLine("\nDigite o ID do registro que deseja excluir :");
-
-            int idSelecionado = Convert.ToInt32(Console.ReadLine());
-
-            bool conseguiuExcluir = controlador.ExcluirRegistro(controlador.SelecionarRegistroPorId(idSelecionado));
-
-            if (conseguiuExcluir)
+            if (controlador.Registros.Length == 0)
             {
-                Console.WriteLine("\nRegistro excluído com sucesso!");
+                Console.Clear();
+                Console.WriteLine("Não há registros cadastrados!!!");
             }
             else
             {
-                Console.WriteLine("\nFalha ao tentar excluir o registro");
-                ExcluirRegistro();
+                VisualizarRegistros(controlador.Registros);
+
+                Console.WriteLine("\nDigite o ID do registro que deseja excluir :");
+
+                int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+                bool conseguiuExcluir = controlador.ExcluirRegistro(controlador.SelecionarRegistroPorId(idSelecionado));
+
+                if (conseguiuExcluir)
+                {
+                    Console.WriteLine("\nRegistro excluído com sucesso!");
+                }
+                else
+                {
+                    Console.WriteLine("\nFalha ao tentar excluir o registro");
+                    ExcluirRegistro();
+                }
             }
+
+
 
         }
         public abstract Registro InserirNovoRegistro();
         public void EditarRegistro()
         {
-            VisualizarRegistros(controlador.Registros);
 
-            Console.WriteLine("\nDigite o ID do registro que deseja editar :");
-
-            int idSelecionado = Convert.ToInt32(Console.ReadLine());
-
-            Registro registro = InserirNovoRegistro();
-            controlador.Editar(idSelecionado, registro);
-
-
-            if (registro.Validar())
+            if (controlador.Registros.Length == 0)
             {
                 Console.Clear();
-                Console.WriteLine("Registro editado com sucesso!!!");
+                Console.WriteLine("Não há registros cadastrados!!!");
             }
             else
             {
-                Console.Clear();
-                Console.WriteLine("Falha ao editar registro!!!");
+                VisualizarRegistros(controlador.Registros);
+
+                Console.WriteLine("\nDigite o ID do registro que deseja editar :");
+
+                int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+                Registro registro = InserirNovoRegistro();
+                controlador.Editar(idSelecionado, registro);
+
+
+                if (registro.Validar())
+                {
+                    Console.Clear();
+                    Console.WriteLine("Registro editado com sucesso!!!");
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Falha ao editar registro!!!");
+                }
             }
         }
         protected bool VisualizarRegistros(Registro[] array)
