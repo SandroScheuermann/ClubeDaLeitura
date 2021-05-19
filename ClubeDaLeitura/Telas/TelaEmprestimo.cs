@@ -22,7 +22,7 @@ namespace ClubeDaLeitura.Telas
             int idAmiguinhoInt, idRevistaInt;
             Console.Clear();
 
-            if (controladorAmiguinho.Registros.Length == 0 || controladorRevista.Registros.Length == 0)
+            if (controladorAmiguinho.Registros.Count == 0 || controladorRevista.Registros.Count == 0)
             {
                 Console.Clear();
                 Console.WriteLine("Não há AMIGUINHOS ou REVISTAS registradas!!!");
@@ -39,7 +39,7 @@ namespace ClubeDaLeitura.Telas
 
                     if (int.TryParse(idAmiguinho, out idAmiguinhoInt))
                     {
-                        amiguinho = (Amiguinho)controladorAmiguinho.SelecionarRegistroPorId(idAmiguinhoInt);
+                        amiguinho = (Amiguinho)controladorAmiguinho.Registros.Find(x => x.Id == idAmiguinhoInt);
                         break;
                     }
 
@@ -54,7 +54,7 @@ namespace ClubeDaLeitura.Telas
 
                     if (int.TryParse(idRevista, out idRevistaInt))
                     {
-                        revista = (Revista)controladorRevista.SelecionarRegistroPorId(idRevistaInt);
+                        revista = (Revista)controladorRevista.Registros.Find(x => x.Id == idRevistaInt);
 
                         if (revista.Alugado)
                         {
@@ -99,7 +99,7 @@ namespace ClubeDaLeitura.Telas
         {
             switch (ObterOpcao())
             {
-                case "1": controlador.Cadastrar(0, InserirNovoRegistro()); break;
+                case "1": controlador.Cadastrar(InserirNovoRegistro()); break;
 
                 case "2": VisualizaDiario(); break;
 
@@ -118,7 +118,7 @@ namespace ClubeDaLeitura.Telas
 
             Console.Clear();
 
-            if (controlador.Registros.Length == 0)
+            if (controlador.Registros.Count == 0)
             {
                 Console.WriteLine("Não há empréstimos registrados!!");
             }
@@ -151,13 +151,10 @@ namespace ClubeDaLeitura.Telas
                     }
                 }
             }
-
-
-
         }
         private bool VisualizaDiario()
         {
-            if (controlador.Registros.Length == 0)
+            if (controlador.Registros.Count == 0)
             {
                 Console.Clear();
                 Console.WriteLine("Não há empréstimos registrados!!");
@@ -189,10 +186,10 @@ namespace ClubeDaLeitura.Telas
 
                 int idSelecionado = Convert.ToInt32(Console.ReadLine());
 
-                if (controlador.SelecionarRegistroPorId(idSelecionado) != null)
+                if (controlador.Registros.Find(x => x.Id == idSelecionado) != null)
                 {
-                    Emprestimo emprestimo = (Emprestimo)controlador.SelecionarRegistroPorId(idSelecionado);
-                    Revista revista = (Revista)controladorRevista.SelecionarRegistroPorId(emprestimo.Revista.Id);
+                    Emprestimo emprestimo = (Emprestimo)controlador.Registros.Find(x => x.Id == idSelecionado);
+                    Revista revista = (Revista)controladorRevista.Registros.Find(x => x.Id == emprestimo.Revista.Id);
                     revista.Alugado = false;
                     emprestimo.Status = "FECHADO";
                     Console.WriteLine("Empréstimo fechado com sucesso!!!\n");

@@ -15,7 +15,7 @@ namespace ClubeDaLeitura.Telas
             Caixa caixa;
             Console.Clear();
 
-            if (controladorCaixa.Registros.Length == 0)
+            if (controladorCaixa.Registros.Count == 0)
             {
                 Console.WriteLine("Não há CAIXAS cadastradas para a revista!!!\n");
                 return null;
@@ -63,7 +63,7 @@ namespace ClubeDaLeitura.Telas
 
                     if (int.TryParse(idCaixa, out idCaixaInt))
                     {
-                        caixa = (Caixa)controladorCaixa.SelecionarRegistroPorId(idCaixaInt);
+                        caixa = (Caixa)controladorCaixa.Registros.Find(x => x.Id == idCaixaInt);
                         break;
                     }
 

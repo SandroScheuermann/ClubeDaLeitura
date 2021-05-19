@@ -59,7 +59,6 @@ namespace ClubeDaLeitura.Telas
                 if (!string.IsNullOrEmpty(localidade)) break;
 
                 Console.WriteLine("A localidade do amiguinho é obrigatória!!!");
-
             }
             Amiguinho amiguinho = new Amiguinho(nome, nomeResponsavel, telefone, localidade);
             return amiguinho;

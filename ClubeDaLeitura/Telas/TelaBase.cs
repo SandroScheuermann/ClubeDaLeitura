@@ -1,6 +1,7 @@
 ﻿using System;
 using ClubeDaLeitura.Domínio;
 using ClubeDaLeitura.Controladores;
+using System.Collections.Generic;
 
 namespace ClubeDaLeitura.Telas
 {
@@ -32,8 +33,7 @@ namespace ClubeDaLeitura.Telas
         }
         public void ExcluirRegistro()
         {
-
-            if (controlador.Registros.Length == 0)
+            if (controlador.Registros.Count == 0)
             {
                 Console.Clear();
                 Console.WriteLine("Não há registros cadastrados!!!");
@@ -46,7 +46,7 @@ namespace ClubeDaLeitura.Telas
 
                 int idSelecionado = Convert.ToInt32(Console.ReadLine());
 
-                bool conseguiuExcluir = controlador.ExcluirRegistro(controlador.SelecionarRegistroPorId(idSelecionado));
+                bool conseguiuExcluir = controlador.ExcluirRegistro(idSelecionado);
 
                 if (conseguiuExcluir)
                 {
@@ -58,15 +58,11 @@ namespace ClubeDaLeitura.Telas
                     ExcluirRegistro();
                 }
             }
-
-
-
         }
         public abstract Registro InserirNovoRegistro();
         public void EditarRegistro()
         {
-
-            if (controlador.Registros.Length == 0)
+            if (controlador.Registros.Count == 0)
             {
                 Console.Clear();
                 Console.WriteLine("Não há registros cadastrados!!!");
@@ -82,7 +78,6 @@ namespace ClubeDaLeitura.Telas
                 Registro registro = InserirNovoRegistro();
                 controlador.Editar(idSelecionado, registro);
 
-
                 if (registro.Validar())
                 {
                     Console.Clear();
@@ -95,9 +90,9 @@ namespace ClubeDaLeitura.Telas
                 }
             }
         }
-        protected bool VisualizarRegistros(Registro[] array)
+        protected bool VisualizarRegistros(List<Registro> lista)
         {
-            if (array.Length == 0)
+            if (lista.Count == 0)
             {
                 Console.Clear();
                 Console.WriteLine("Não há registros cadastrados!!!\n");
@@ -105,10 +100,10 @@ namespace ClubeDaLeitura.Telas
             }
             else
             {
-                for (int i = 0; i < array.Length; i++)
+                for (int i = 0; i < lista.Count; i++)
                 {
                     Console.WriteLine();
-                    Console.WriteLine(array[i]);
+                    Console.WriteLine(lista[i]);
                 }
                 return true;
             }
@@ -118,7 +113,7 @@ namespace ClubeDaLeitura.Telas
             switch (ObterOpcao())
             {
                 case "1":
-                    controlador.Cadastrar(0, InserirNovoRegistro()); break;
+                    controlador.Cadastrar(InserirNovoRegistro()); break;
 
                 case "2":
                     Console.Clear();
