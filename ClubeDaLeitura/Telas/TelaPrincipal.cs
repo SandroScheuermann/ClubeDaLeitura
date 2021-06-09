@@ -6,15 +6,14 @@ namespace ClubeDaLeitura.Telas
 {
     class TelaPrincipal
     {
-        private readonly Controlador controlador = new Controlador();
-        private readonly Controlador controladorAmiguinho = new Controlador();
-        private readonly Controlador controladorCaixa = new Controlador();
-        private readonly Controlador controladorRevista = new Controlador();
-        private readonly Controlador controladorEmprestimo = new Controlador();
-        public TelaBase ObterTela()
+        private readonly Controlador<Amiguinho> controladorAmiguinho = new Controlador<Amiguinho>();
+        private readonly Controlador<Caixa> controladorCaixa = new Controlador<Caixa>();
+        private readonly Controlador<Revista> controladorRevista = new Controlador<Revista>();
+        private readonly Controlador<Emprestimo> controladorEmprestimo = new Controlador<Emprestimo>();
+        public dynamic ObterTela()
         {
-            TelaBase telaSelecionada = null;
-            string opcao;
+            dynamic telaSelecionada = null;
+            string opcao = "";
 
             Console.WriteLine("\nDigite 1 para a tela de Amiguinhos");
             Console.WriteLine("Digite 2 para a tela de Caixas");

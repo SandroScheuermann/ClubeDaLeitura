@@ -1,14 +1,15 @@
 ﻿using ClubeDaLeitura.Controladores;
 using ClubeDaLeitura.Domínio;
 using System;
+using System.Collections.Generic;
 
 namespace ClubeDaLeitura.Telas
 {
-    class TelaRevista : TelaBase
+    class TelaRevista : TelaBase<Revista>
     {
-        private Controlador controladorCaixa;
-        public TelaRevista(Controlador controladorRevista, Controlador controladorCaixa) : base(controladorRevista, "Cadastro de Revistas\n") { this.controladorCaixa = controladorCaixa; }
-        public override Registro InserirNovoRegistro()
+        private Controlador<Caixa> controladorCaixa;
+        public TelaRevista(Controlador<Revista> controladorRevista, Controlador<Caixa> controladorCaixa) : base(controladorRevista, "Cadastro de Revistas\n") { this.controladorCaixa = controladorCaixa; }
+        public override Revista InserirNovoRegistro()
         {
             string tipoColecao = "", nEdicao = "", anoRevista = "", idCaixa = "";
             int nEdicaoInt = 0, anoRevistaInt = 0, idCaixaInt = 0;
@@ -74,5 +75,6 @@ namespace ClubeDaLeitura.Telas
                 return revista;
             }
         }
+
     }
 }

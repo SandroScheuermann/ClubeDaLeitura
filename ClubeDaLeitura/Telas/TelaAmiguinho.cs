@@ -4,14 +4,14 @@ using System;
 
 namespace ClubeDaLeitura.Telas
 {
-    class TelaAmiguinho : TelaBase
+    class TelaAmiguinho : TelaBase<Amiguinho>
     {
-        Controlador controladorAmiguinho;
-        public TelaAmiguinho(Controlador controladorAmiguinho) : base(controladorAmiguinho, "Cadastro de Amiguinhos\n")
+        Controlador<Amiguinho> controladorAmiguinho;
+        public TelaAmiguinho(Controlador<Amiguinho> controladorAmiguinho) : base(controladorAmiguinho, "Cadastro de Amiguinhos\n")
         {
             this.controladorAmiguinho = controladorAmiguinho;
         }
-        public override Registro InserirNovoRegistro()
+        public override Amiguinho InserirNovoRegistro()
         {
             string nome = "", nomeResponsavel = "", telefone = "", localidade = "";
 

@@ -4,16 +4,16 @@ using System;
 
 namespace ClubeDaLeitura.Telas
 {
-    class TelaEmprestimo : TelaBase
+    class TelaEmprestimo : TelaBase<Emprestimo>
     {
-        Controlador controladorAmiguinho;
-        Controlador controladorRevista;
-        public TelaEmprestimo(Controlador controladorEmprestimo, Controlador controladorAmiguinho, Controlador controladorRevista) : base(controladorEmprestimo, "Cadastro de Empréstimos\n")
+        Controlador<Amiguinho> controladorAmiguinho;
+        Controlador<Revista> controladorRevista;
+        public TelaEmprestimo(Controlador<Emprestimo> controladorEmprestimo, Controlador<Amiguinho> controladorAmiguinho, Controlador<Revista> controladorRevista) : base(controladorEmprestimo, "Cadastro de Empréstimos\n")
         {
             this.controladorAmiguinho = controladorAmiguinho;
             this.controladorRevista = controladorRevista;
         }
-        public override Registro InserirNovoRegistro()
+        public override Emprestimo InserirNovoRegistro()
         {
             Amiguinho amiguinho;
             Revista revista;
@@ -39,7 +39,7 @@ namespace ClubeDaLeitura.Telas
 
                     if (int.TryParse(idAmiguinho, out idAmiguinhoInt))
                     {
-                        amiguinho = (Amiguinho)controladorAmiguinho.Registros.Find(x => x.Id == idAmiguinhoInt);
+                        amiguinho = controladorAmiguinho.Registros.Find(x => x.Id == idAmiguinhoInt);
                         break;
                     }
 
@@ -54,7 +54,7 @@ namespace ClubeDaLeitura.Telas
 
                     if (int.TryParse(idRevista, out idRevistaInt))
                     {
-                        revista = (Revista)controladorRevista.Registros.Find(x => x.Id == idRevistaInt);
+                        revista = controladorRevista.Registros.Find(x => x.Id == idRevistaInt);
 
                         if (revista.Alugado)
                         {

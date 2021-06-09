@@ -4,10 +4,10 @@ using System;
 
 namespace ClubeDaLeitura.Telas
 {
-    class TelaCaixa : TelaBase
+    class TelaCaixa : TelaBase<Caixa>
     {
-        public TelaCaixa(Controlador controladorCaixa) : base(controladorCaixa, "Cadastro de Caixas\n") { }
-        public override Registro InserirNovoRegistro()
+        public TelaCaixa(Controlador<Caixa> controladorCaixa) : base(controladorCaixa, "Cadastro de Caixas\n") { }
+        public override Caixa InserirNovoRegistro()
         {
             string etiqueta = "", cor = "", nCaixa = "";
             int nCaixaInt = 0;

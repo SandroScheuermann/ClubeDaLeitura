@@ -11,7 +11,7 @@ namespace ClubeDaLeitura
 
             while (true)
             {
-                TelaBase telaSelecionada = telaPrincipal.ObterTela();
+                dynamic telaSelecionada = telaPrincipal.ObterTela();
 
                 if (telaSelecionada == null)
                     break;

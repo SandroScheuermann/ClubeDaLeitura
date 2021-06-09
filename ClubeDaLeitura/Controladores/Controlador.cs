@@ -3,15 +3,15 @@ using ClubeDaLeitura.Domínio;
 
 namespace ClubeDaLeitura.Controladores
 {
-    class Controlador
+    class Controlador<T> where T : Registro
     {
-        private List<Registro> registros = new List<Registro>();
-        internal List<Registro> Registros { get => registros;}
-        public void Editar(int id, Registro registro)
+        private List<T> registros = new List<T>();
+        internal List<T> Registros { get => registros;}
+        public void Editar(int id, T registro)
         {
             registros[registros.FindIndex(x => x.Id == id)] = registro;
         }
-        public void Cadastrar(Registro registro)
+        public void Cadastrar(T registro)
         {
             registros.Add(registro);
         }

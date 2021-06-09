@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 namespace ClubeDaLeitura.Telas
 {
-    abstract class TelaBase
+    abstract class TelaBase <T> where T : Registro
     {
-        protected Controlador controlador;
+        protected Controlador<T> controlador;
 
         string titulo = "";
-        public TelaBase(Controlador controlador, string titulo)
+        public TelaBase(Controlador<T> controlador, string titulo)
         {
             Console.Clear();
             this.controlador = controlador;
@@ -59,7 +59,7 @@ namespace ClubeDaLeitura.Telas
                 }
             }
         }
-        public abstract Registro InserirNovoRegistro();
+        public abstract T InserirNovoRegistro();
         public void EditarRegistro()
         {
             if (controlador.Registros.Count == 0)
@@ -75,7 +75,7 @@ namespace ClubeDaLeitura.Telas
 
                 int idSelecionado = Convert.ToInt32(Console.ReadLine());
 
-                Registro registro = InserirNovoRegistro();
+                T registro = InserirNovoRegistro();
                 controlador.Editar(idSelecionado, registro);
 
                 if (registro.Validar())
@@ -90,7 +90,7 @@ namespace ClubeDaLeitura.Telas
                 }
             }
         }
-        protected bool VisualizarRegistros(List<Registro> lista)
+        protected bool VisualizarRegistros(dynamic lista)
         {
             if (lista.Count == 0)
             {
